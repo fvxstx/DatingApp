@@ -11,16 +11,30 @@ import { NavComponent } from './nav/nav.component';
 import { AccountService } from './services/account.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { SharedModule } from './modules/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, NavComponent, HomeComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    HomeComponent,
+    RegisterComponent,
+    MemberListComponent,
+    MemberDetailComponent,
+    ListsComponent,
+    MessagesComponent,
+  ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BsDropdownModule.forRoot(),
+    SharedModule,
   ],
   providers: [AccountService],
   bootstrap: [AppComponent],
