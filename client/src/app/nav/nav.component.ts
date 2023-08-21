@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AccountService } from '../services/account.service';
+import { AccountService } from '../_services/account.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -22,7 +22,6 @@ export class NavComponent {
   login() {
     this.accountService.login(this.model).subscribe({
       next: () => this.router.navigateByUrl('/members'),
-      error: (err) => this.toast.error(err.error),
     });
   }
 
