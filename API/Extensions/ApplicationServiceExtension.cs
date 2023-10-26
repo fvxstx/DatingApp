@@ -19,6 +19,13 @@ namespace API.Extensions
 
             // Adding the token
             services.AddScoped<ITokenService, TokenService>();
+            
+            // Adding Repository
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            // Adding AutoMapper
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); 
+
 
             return services;
         }
