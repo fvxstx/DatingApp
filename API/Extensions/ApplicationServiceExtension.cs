@@ -1,4 +1,5 @@
 ﻿using API.Data;
+using API.Helpers;
 using API.Interfaces;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,12 @@ namespace API.Extensions
 
             // Adding AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); 
+
+            // Adding Cloudinary
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
+
+            // Adding Photo Service
+            services.AddScoped<IPhotoService, PhotoService>();
 
 
             return services;
