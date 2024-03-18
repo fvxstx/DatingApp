@@ -33,6 +33,9 @@ namespace API.Extensions
             // Adding Photo Service
             services.AddScoped<IPhotoService, PhotoService>();
 
+            //Adding LastActivity Action Filters
+            services.AddScoped<LogUserActivity>();   
+
 
             return services;
         }
