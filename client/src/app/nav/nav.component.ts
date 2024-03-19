@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AccountService } from '../_services/account.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { UserParams } from '../_models/userParams';
+import { MembersService } from '../_services/members.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NavComponent {
   model: any = {};
+  userParams: UserParams | undefined;
 
   constructor(
     public accountService: AccountService,

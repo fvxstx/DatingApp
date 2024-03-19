@@ -34,7 +34,10 @@ namespace API.Extensions
             services.AddScoped<IPhotoService, PhotoService>();
 
             //Adding LastActivity Action Filters
-            services.AddScoped<LogUserActivity>();   
+            services.AddScoped<LogUserActivity>();
+
+            // Adding Like Repository
+            services.AddScoped<ILikesRepository, LikesRepository>();   
 
 
             return services;

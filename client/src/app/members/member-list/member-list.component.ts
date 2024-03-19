@@ -27,7 +27,6 @@ export class MemberListComponent {
   }
 
   ngOnInit(): void {
-    /* this.members$ = this.memberService.getMembers(); */
     this.loadMembers();
   }
 
