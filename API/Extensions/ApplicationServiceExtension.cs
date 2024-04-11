@@ -22,9 +22,6 @@ namespace API.Extensions
             // Adding the token
             services.AddScoped<ITokenService, TokenService>();
             
-            // Adding Repository
-            services.AddScoped<IUserRepository, UserRepository>();
-
             // Adding AutoMapper
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); 
 
@@ -37,17 +34,14 @@ namespace API.Extensions
             //Adding LastActivity Action Filters
             services.AddScoped<LogUserActivity>();
 
-            // Adding Like Repository
-            services.AddScoped<ILikesRepository, LikesRepository>();
-
-            // Adding Messages Repository
-            services.AddScoped<IMessageRepository, MessageRepository>();
-
             // Adding SignalR
             services.AddSignalR();
 
             // Adding Presence Tracker
-            services.AddSingleton<PresenceTracker>();    
+            services.AddSingleton<PresenceTracker>();
+            
+            // Unit to Work
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
             return services;
