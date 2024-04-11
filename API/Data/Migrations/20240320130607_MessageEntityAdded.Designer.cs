@@ -94,9 +94,6 @@ namespace API.Data.Migrations
                     b.Property<string>("RecipientUsername")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SendId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("SenderDeleted")
                         .HasColumnType("INTEGER");
 
