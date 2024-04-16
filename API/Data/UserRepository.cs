@@ -1,3 +1,4 @@
+using System.Linq;
 using API.DTOs;
 using API.Entities;
 using API.Helpers;
@@ -19,6 +20,11 @@ namespace API.Data
         }
 
         public async Task<MemberDto> GetMemberAsync(string username)
+        {
+            return await _context.Users.Where(x => x.UserName == username).IgnoreQueryFilters().ProjectTo<MemberDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
+        }
+
+        public async Task<MemberDto> GetMemberWithFiltersAsync(string username)
         {
             return await _context.Users.Where(x => x.UserName == username).ProjectTo<MemberDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
         }
@@ -49,7 +55,6 @@ namespace API.Data
             );
         }
 
-
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
             return await _context.Users.FindAsync(id);
@@ -70,6 +75,11 @@ namespace API.Data
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await _context.Users.Include(p => p.Photos).ToListAsync();
+        }
+
+        public async Task<MemberDto> GetUserByPhotoIdAsync(int photoId){
+            var photo = await _context.Photos.IgnoreQueryFilters().FirstAsync(x => x.Id == photoId);
+            return await _context.Users.IgnoreQueryFilters().Where(x => x.Photos!.Contains(photo)).ProjectTo<MemberDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();;
         }
 
         public void Update(AppUser user)

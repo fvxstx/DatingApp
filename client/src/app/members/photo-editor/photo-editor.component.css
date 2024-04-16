@@ -5,3 +5,12 @@
 input[type="file"] {
   color: transparent;
 }
+
+.on-approval {
+  position: absolute;
+  width: 80px;
+  bottom: 400px;
+  color: red;
+  margin: 0;
+  margin-left: 20px;
+}
