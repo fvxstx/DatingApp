@@ -44,11 +44,18 @@ export class RegisterComponent {
       country: ['', Validators.required],
       password: [
         '',
-        [Validators.required, Validators.minLength(4), Validators.maxLength(8)],
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(8),
+          this.capitalLetterValidator(),
+          this.numberValidator(),
+          this.specialCharacterValidator(),
+        ],
       ],
       confirmPassword: [
         '',
-        [Validators.required, this.matchValues('password')],
+        [Validators.required, this.matchValuesValidator('password')],
       ],
     });
     this.registerForm.controls['password'].valueChanges.subscribe({
@@ -57,11 +64,53 @@ export class RegisterComponent {
     });
   }
 
-  matchValues(matchTo: string): ValidatorFn {
+  matchValuesValidator(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {
       return control.value === control.parent?.get(matchTo)?.value
         ? null
         : { notMatching: true };
+    };
+  }
+
+  capitalLetterValidator(): ValidatorFn {
+    return (control: AbstractControl) => {
+      if (!control.value) {
+        return null;
+      }
+
+      const capitalLetterRegex = /[A-Z]/;
+      if (!capitalLetterRegex.test(control.value)) {
+        return { capitalLetter: true };
+      }
+      return null;
+    };
+  }
+
+  numberValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (!control.value) {
+        return null;
+      }
+
+      const digitRegex = /[0-9]/;
+      if (!digitRegex.test(control.value)) {
+        return { number: true };
+      }
+      return null;
+    };
+  }
+
+  specialCharacterValidator(): ValidatorFn {
+    return (control: AbstractControl) => {
+      if (!control.value) {
+        return null;
+      }
+
+      const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+      if (!specialCharRegex.test(control.value)) {
+        return { specialCharacter: true };
+      }
+      return null;
     };
   }
 

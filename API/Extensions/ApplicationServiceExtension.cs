@@ -11,11 +11,6 @@ namespace API.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
-            // Conection with database
-            services.AddDbContext<DataContext>(opt => {
-                opt.UseSqlite(config.GetConnectionString("DefaultConnection"));
-            });
-
             // Adding cors
             services.AddCors();
 
